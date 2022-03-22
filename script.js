@@ -5,6 +5,8 @@ const image1 = document.getElementById('image1')
 const image2 = document.getElementById('image2')
 const image3 = document.getElementById('image3')
 const textBox = document.getElementById('text-box')
+const dark_theme = 'dark'
+const light_theme = 'light'
 
 // Dark or Light Images
 function imageMode(color) {
@@ -18,19 +20,19 @@ function toggleDarkLightMode(isLight) {
     textBox.style.backgroundColor = isLight ? 'rgb(0 0 0 / 50%' : 'rgb(255 255 255 / 50%'
     toggleIcon.children[0].textContent = isLight ? 'Light Mode' : 'Dark Mode'
     isLight ?     toggleIcon.children[1].classList.replace('fa-moon', 'fa-sun') : toggleIcon.children[1].classList.replace('fa-sun', 'fa-moon')
-    isLight ? imageMode('light') : imageMode('dark')
+    isLight ? imageMode(light_theme) : imageMode(dark_theme)
 }
 
 // Switch Theme Dynamically
 function switchTheme(event) {
     // console.log(event.target.checked)
     if (event.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark')
-        localStorage.setItem('theme', 'dark')
+        document.documentElement.setAttribute('data-theme', dark_theme)
+        localStorage.setItem('theme', dark_theme)
         toggleDarkLightMode(false)
     } else {
-        document.documentElement.setAttribute('data-theme', 'light')
-        localStorage.setItem('theme', 'light')
+        document.documentElement.setAttribute('data-theme', light_theme)
+        localStorage.setItem('theme', light_theme)
         toggleDarkLightMode(true)
     }
 }
@@ -40,9 +42,9 @@ toggleSwitch.addEventListener('change', switchTheme)
 const currentTheme = localStorage.getItem('theme')
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme)
-    if (currentTheme === 'dark') {
+    if (currentTheme === dark_theme) {
         toggleSwitch.checked = true
-        toggleLightDarkMode(false)
+        toggleDarkLightMode(false)
     }
 }
     // console.log(currentTheme)
