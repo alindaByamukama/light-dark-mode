@@ -7,6 +7,8 @@ const image3 = document.getElementById('image3')
 const textBox = document.getElementById('text-box')
 const dark_theme = 'dark'
 const light_theme = 'light'
+const toggle_dark = false
+const toggle_light = true
 
 // Dark or Light Images
 function imageMode(color) {
@@ -29,11 +31,11 @@ function switchTheme(event) {
     if (event.target.checked) {
         document.documentElement.setAttribute('data-theme', dark_theme)
         localStorage.setItem('theme', dark_theme)
-        toggleDarkLightMode(false)
+        toggleDarkLightMode(toggle_dark)
     } else {
         document.documentElement.setAttribute('data-theme', light_theme)
         localStorage.setItem('theme', light_theme)
-        toggleDarkLightMode(true)
+        toggleDarkLightMode(toggle_light)
     }
 }
 // Event Listeners
@@ -44,7 +46,7 @@ if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme)
     if (currentTheme === dark_theme) {
         toggleSwitch.checked = true
-        toggleDarkLightMode(false)
+        toggleDarkLightMode(toggle_dark)
     }
 }
     // console.log(currentTheme)
